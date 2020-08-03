@@ -40,6 +40,7 @@ class GraphView: UIView {
         }
         var lastPos = calcPoint(idx: 0, value: values[0])
         for (idx, value) in values.enumerated() {
+            // Drawing continuous lines is heavy, so draw individual line segments.
             let graphPath = UIBezierPath()
             let pos = calcPoint(idx:idx, value:value)
             graphPath.move(to: lastPos)
@@ -54,6 +55,7 @@ class GraphView: UIView {
     }
 
     func decimate() {
+        // Thinning the drawing to one pixel in width
         let deltaX = 1.0 / contentScaleFactor
         //let deltaX = CGFloat(1.0)
         var lastPos = calcPoint(idx: 0, value: values[0])

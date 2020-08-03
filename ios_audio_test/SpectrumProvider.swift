@@ -16,12 +16,11 @@ class SpectrumProvider : DataProvider {
     override func convert(_ src: [Double]) -> [Double] {
         count += 1
         let spec = fft.fft(src)
-        let dst = spec.map { (x) -> Double in return (x > 0) ? log10(x) : 0 }
+        let dst = spec.map { (x) -> Double in return (x > 0) ? log10(x) * 20 : 0 }
         return dst
     }
     
     func changeSize(_ n: Int) {
-        let size = n <= 1024 ? n : 1024
-        fft.changeSize(size)
+        fft.changeSize(n)
     }
 }

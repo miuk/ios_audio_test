@@ -19,11 +19,16 @@ class FFT {
         changeSize(_n)
     }
 
-    func changeSize(_ _n: Int) {
-        var tmp = 1
-        while (tmp < _n) {
-            tmp <<= 1
+    private func calcPow2(_ value: Int) -> Int {
+        var num = 1
+        while num < value {
+            num <<= 1
         }
+        return num
+    }
+    
+    func changeSize(_ _n: Int) {
+        let tmp = calcPow2(_n)
         if tmp == n {
             return
         }

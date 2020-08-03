@@ -25,7 +25,7 @@ struct AudioInView: View {
         VStack {
             Graph(values: $wave.data, minValue: -1.0, maxValue: 1.0)
                 .frame(height: 200)
-            Graph(values: $spectrum.data, minValue: -15.0, maxValue: 0.0)
+            Graph(values: $spectrum.data, minValue: -120.0, maxValue: 0.0)
                 .frame(height: 200)
             HStack {
                 Text("Rate")
@@ -70,7 +70,7 @@ struct AudioInView: View {
                     self.audioIn.start()
                     self.bAudioIn = true
                 }
-            }) { Text("ON") }
+            }) { Text(self.bAudioIn ? "OFF":"ON") }
             Text("\(msg)")
             Spacer()
         }

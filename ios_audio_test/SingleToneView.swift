@@ -98,7 +98,7 @@ Spacer()
                     self.audioPlay.stop()
                 }
             }) {
-                Text("ON")
+                Text(self.soundOn ? "OFF" : "ON")
             }
 
             Spacer()
@@ -113,7 +113,6 @@ Spacer()
     func changeFrequency() {
         frequency = notes.calcFrequency(note, octave)
         audioPlay.frequency = Float(frequency)
-        print("changeFrequency \(frequency)")
     }
 }
 

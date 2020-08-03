@@ -13,6 +13,17 @@
 		BA937F6524CD632700A1FCBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA937F6424CD632700A1FCBC /* Assets.xcassets */; };
 		BA937F6824CD632700A1FCBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA937F6724CD632700A1FCBC /* Preview Assets.xcassets */; };
 		BA937F6B24CD632700A1FCBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA937F6924CD632700A1FCBC /* LaunchScreen.storyboard */; };
+		BA937F7324CD639300A1FCBC /* SingleToneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F7224CD639300A1FCBC /* SingleToneView.swift */; };
+		BA937F7524CD63BD00A1FCBC /* AudioInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F7424CD63BD00A1FCBC /* AudioInView.swift */; };
+		BA937F7724CD717F00A1FCBC /* AudioPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F7624CD717F00A1FCBC /* AudioPlay.swift */; };
+		BA937F7B24CF211100A1FCBC /* AudioIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F7A24CF211100A1FCBC /* AudioIn.swift */; };
+		BA937F7D24D31A2C00A1FCBC /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F7C24D31A2C00A1FCBC /* GraphView.swift */; };
+		BA937F7F24D31A7800A1FCBC /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F7E24D31A7800A1FCBC /* Graph.swift */; };
+		BA937F8124D3B82E00A1FCBC /* AudioInUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8024D3B82E00A1FCBC /* AudioInUpdater.swift */; };
+		BA937F8524D5698800A1FCBC /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8424D5698800A1FCBC /* DataProvider.swift */; };
+		BA937F8724D634E600A1FCBC /* SpectrumProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8624D634E600A1FCBC /* SpectrumProvider.swift */; };
+		BA937F8924D639EC00A1FCBC /* FFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8824D639EC00A1FCBC /* FFT.swift */; };
+		BA937F8B24D707DC00A1FCBC /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8A24D707DC00A1FCBC /* Notes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +35,17 @@
 		BA937F6724CD632700A1FCBC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA937F6A24CD632700A1FCBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA937F6C24CD632700A1FCBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA937F7224CD639300A1FCBC /* SingleToneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleToneView.swift; sourceTree = "<group>"; };
+		BA937F7424CD63BD00A1FCBC /* AudioInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInView.swift; sourceTree = "<group>"; };
+		BA937F7624CD717F00A1FCBC /* AudioPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlay.swift; sourceTree = "<group>"; };
+		BA937F7A24CF211100A1FCBC /* AudioIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioIn.swift; sourceTree = "<group>"; };
+		BA937F7C24D31A2C00A1FCBC /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		BA937F7E24D31A7800A1FCBC /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		BA937F8024D3B82E00A1FCBC /* AudioInUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInUpdater.swift; sourceTree = "<group>"; };
+		BA937F8424D5698800A1FCBC /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		BA937F8624D634E600A1FCBC /* SpectrumProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrumProvider.swift; sourceTree = "<group>"; };
+		BA937F8824D639EC00A1FCBC /* FFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFT.swift; sourceTree = "<group>"; };
+		BA937F8A24D707DC00A1FCBC /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +81,21 @@
 				BA937F5E24CD632700A1FCBC /* AppDelegate.swift */,
 				BA937F6024CD632700A1FCBC /* SceneDelegate.swift */,
 				BA937F6224CD632700A1FCBC /* ContentView.swift */,
+				BA937F7224CD639300A1FCBC /* SingleToneView.swift */,
+				BA937F8A24D707DC00A1FCBC /* Notes.swift */,
 				BA937F6424CD632700A1FCBC /* Assets.xcassets */,
 				BA937F6924CD632700A1FCBC /* LaunchScreen.storyboard */,
 				BA937F6C24CD632700A1FCBC /* Info.plist */,
 				BA937F6624CD632700A1FCBC /* Preview Content */,
+				BA937F7424CD63BD00A1FCBC /* AudioInView.swift */,
+				BA937F7624CD717F00A1FCBC /* AudioPlay.swift */,
+				BA937F7A24CF211100A1FCBC /* AudioIn.swift */,
+				BA937F8824D639EC00A1FCBC /* FFT.swift */,
+				BA937F8024D3B82E00A1FCBC /* AudioInUpdater.swift */,
+				BA937F7C24D31A2C00A1FCBC /* GraphView.swift */,
+				BA937F7E24D31A7800A1FCBC /* Graph.swift */,
+				BA937F8424D5698800A1FCBC /* DataProvider.swift */,
+				BA937F8624D634E600A1FCBC /* SpectrumProvider.swift */,
 			);
 			path = ios_audio_test;
 			sourceTree = "<group>";
@@ -147,8 +180,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA937F5F24CD632700A1FCBC /* AppDelegate.swift in Sources */,
+				BA937F8B24D707DC00A1FCBC /* Notes.swift in Sources */,
 				BA937F6124CD632700A1FCBC /* SceneDelegate.swift in Sources */,
 				BA937F6324CD632700A1FCBC /* ContentView.swift in Sources */,
+				BA937F7524CD63BD00A1FCBC /* AudioInView.swift in Sources */,
+				BA937F7B24CF211100A1FCBC /* AudioIn.swift in Sources */,
+				BA937F8524D5698800A1FCBC /* DataProvider.swift in Sources */,
+				BA937F7724CD717F00A1FCBC /* AudioPlay.swift in Sources */,
+				BA937F8724D634E600A1FCBC /* SpectrumProvider.swift in Sources */,
+				BA937F7F24D31A7800A1FCBC /* Graph.swift in Sources */,
+				BA937F8124D3B82E00A1FCBC /* AudioInUpdater.swift in Sources */,
+				BA937F8924D639EC00A1FCBC /* FFT.swift in Sources */,
+				BA937F7324CD639300A1FCBC /* SingleToneView.swift in Sources */,
+				BA937F7D24D31A2C00A1FCBC /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

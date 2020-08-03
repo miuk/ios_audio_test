@@ -10,7 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List {
+                NavigationLink(destination: SingleToneView()) {
+                    Text("Single Tone")
+                }
+                NavigationLink(destination: AudioInView()) {
+                    Text("Audio In")
+                }
+            }
+        .navigationBarTitle(Text("Audio Test"))
+        }
     }
 }
 

@@ -10,9 +10,9 @@ import Foundation
 
 class DataProvider : ObservableObject, AudioInUpdater {
     
-    @Published var data: [Double] = []
+    @Published var data: [Float] = []
 
-    func update(_ data: [Double]) {
+    func update(_ data: [Float]) {
         DispatchQueue.global().async {
             let cdata = self.convert(data)
             DispatchQueue.main.async {
@@ -21,7 +21,7 @@ class DataProvider : ObservableObject, AudioInUpdater {
         }
     }
 
-    func convert(_ data: [Double]) -> [Double] {
+    func convert(_ data: [Float]) -> [Float] {
         return data
     }
 }

@@ -18,6 +18,9 @@ struct ContentView: View {
                 NavigationLink(destination: AudioInView()) {
                     Text("Audio In")
                 }
+                NavigationLink(destination: SendRecvView()) {
+                    Text("Send Receive")
+                }
             }
         .navigationBarTitle(Text("Audio Test"))
         }

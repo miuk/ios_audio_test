@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA15EC1024D9548D00B6CCBF /* udpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = BA15EC0F24D9548D00B6CCBF /* udpsocket.c */; };
+		BA15EC1724DA4A6C00B6CCBF /* AudioPlayDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA15EC1624DA4A6C00B6CCBF /* AudioPlayDataProvider.swift */; };
+		BA15EC1924DA4B5C00B6CCBF /* SingleToneProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA15EC1824DA4B5C00B6CCBF /* SingleToneProvider.swift */; };
 		BA937F5F24CD632700A1FCBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F5E24CD632700A1FCBC /* AppDelegate.swift */; };
 		BA937F6124CD632700A1FCBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F6024CD632700A1FCBC /* SceneDelegate.swift */; };
 		BA937F6324CD632700A1FCBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F6224CD632700A1FCBC /* ContentView.swift */; };
@@ -24,9 +27,16 @@
 		BA937F8724D634E600A1FCBC /* SpectrumProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8624D634E600A1FCBC /* SpectrumProvider.swift */; };
 		BA937F8924D639EC00A1FCBC /* FFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8824D639EC00A1FCBC /* FFT.swift */; };
 		BA937F8B24D707DC00A1FCBC /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8A24D707DC00A1FCBC /* Notes.swift */; };
+		BA937F8D24D8E6B000A1FCBC /* SendRecvView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8C24D8E6B000A1FCBC /* SendRecvView.swift */; };
+		BA937F8F24D9065A00A1FCBC /* SendRecv.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA937F8E24D9065A00A1FCBC /* SendRecv.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA15EC0E24D9548D00B6CCBF /* udpsocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = udpsocket.h; sourceTree = "<group>"; };
+		BA15EC0F24D9548D00B6CCBF /* udpsocket.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = udpsocket.c; sourceTree = "<group>"; };
+		BA15EC1524D961A100B6CCBF /* ios_audio_test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios_audio_test-Bridging-Header.h"; sourceTree = "<group>"; };
+		BA15EC1624DA4A6C00B6CCBF /* AudioPlayDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayDataProvider.swift; sourceTree = "<group>"; };
+		BA15EC1824DA4B5C00B6CCBF /* SingleToneProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleToneProvider.swift; sourceTree = "<group>"; };
 		BA937F5B24CD632700A1FCBC /* ios_audio_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_audio_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA937F5E24CD632700A1FCBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA937F6024CD632700A1FCBC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +56,8 @@
 		BA937F8624D634E600A1FCBC /* SpectrumProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrumProvider.swift; sourceTree = "<group>"; };
 		BA937F8824D639EC00A1FCBC /* FFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFT.swift; sourceTree = "<group>"; };
 		BA937F8A24D707DC00A1FCBC /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		BA937F8C24D8E6B000A1FCBC /* SendRecvView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRecvView.swift; sourceTree = "<group>"; };
+		BA937F8E24D9065A00A1FCBC /* SendRecv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRecv.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 		BA937F5224CD632700A1FCBC = {
 			isa = PBXGroup;
 			children = (
+				BA15EC1524D961A100B6CCBF /* ios_audio_test-Bridging-Header.h */,
 				BA937F5D24CD632700A1FCBC /* ios_audio_test */,
 				BA937F5C24CD632700A1FCBC /* Products */,
 			);
@@ -89,6 +102,8 @@
 				BA937F6624CD632700A1FCBC /* Preview Content */,
 				BA937F7424CD63BD00A1FCBC /* AudioInView.swift */,
 				BA937F7624CD717F00A1FCBC /* AudioPlay.swift */,
+				BA15EC1624DA4A6C00B6CCBF /* AudioPlayDataProvider.swift */,
+				BA15EC1824DA4B5C00B6CCBF /* SingleToneProvider.swift */,
 				BA937F7A24CF211100A1FCBC /* AudioIn.swift */,
 				BA937F8824D639EC00A1FCBC /* FFT.swift */,
 				BA937F8024D3B82E00A1FCBC /* AudioInUpdater.swift */,
@@ -96,6 +111,10 @@
 				BA937F7E24D31A7800A1FCBC /* Graph.swift */,
 				BA937F8424D5698800A1FCBC /* DataProvider.swift */,
 				BA937F8624D634E600A1FCBC /* SpectrumProvider.swift */,
+				BA937F8C24D8E6B000A1FCBC /* SendRecvView.swift */,
+				BA937F8E24D9065A00A1FCBC /* SendRecv.swift */,
+				BA15EC0E24D9548D00B6CCBF /* udpsocket.h */,
+				BA15EC0F24D9548D00B6CCBF /* udpsocket.c */,
 			);
 			path = ios_audio_test;
 			sourceTree = "<group>";
@@ -140,6 +159,7 @@
 				TargetAttributes = {
 					BA937F5A24CD632700A1FCBC = {
 						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
 					};
 				};
 			};
@@ -180,10 +200,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA937F5F24CD632700A1FCBC /* AppDelegate.swift in Sources */,
+				BA15EC1924DA4B5C00B6CCBF /* SingleToneProvider.swift in Sources */,
 				BA937F8B24D707DC00A1FCBC /* Notes.swift in Sources */,
+				BA937F8D24D8E6B000A1FCBC /* SendRecvView.swift in Sources */,
+				BA937F8F24D9065A00A1FCBC /* SendRecv.swift in Sources */,
 				BA937F6124CD632700A1FCBC /* SceneDelegate.swift in Sources */,
 				BA937F6324CD632700A1FCBC /* ContentView.swift in Sources */,
 				BA937F7524CD63BD00A1FCBC /* AudioInView.swift in Sources */,
+				BA15EC1724DA4A6C00B6CCBF /* AudioPlayDataProvider.swift in Sources */,
 				BA937F7B24CF211100A1FCBC /* AudioIn.swift in Sources */,
 				BA937F8524D5698800A1FCBC /* DataProvider.swift in Sources */,
 				BA937F7724CD717F00A1FCBC /* AudioPlay.swift in Sources */,
@@ -193,6 +217,7 @@
 				BA937F8924D639EC00A1FCBC /* FFT.swift in Sources */,
 				BA937F7324CD639300A1FCBC /* SingleToneView.swift in Sources */,
 				BA937F7D24D31A2C00A1FCBC /* GraphView.swift in Sources */,
+				BA15EC1024D9548D00B6CCBF /* udpsocket.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ios_audio_test/Preview Content\"";
 				DEVELOPMENT_TEAM = NLM2FP7FR7;
@@ -339,6 +365,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miuk.ios-audio-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ios_audio_test-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -348,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ios_audio_test/Preview Content\"";
 				DEVELOPMENT_TEAM = NLM2FP7FR7;
@@ -359,6 +390,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miuk.ios-audio-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ios_audio_test-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

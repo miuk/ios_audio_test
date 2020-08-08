@@ -18,7 +18,7 @@ class AudioIn {
     private var sampleRate = 8000
     private var samplePeriodMSec = 100
     private var samplePeriodNumPoints = 0
-    private var sampleBuffer = [Double]()
+    private var sampleBuffer = [Float]()
     private var bRecording = false
     
     private var updaters = [AudioInUpdater]()
@@ -43,7 +43,7 @@ class AudioIn {
         sampleRate = value
         samplePeriodNumPoints = AudioIn.calcSampleNumPoints(sampleRate, samplePeriodMSec)
         prepareAudioUnit()
-        sampleBuffer = [Double]()
+        sampleBuffer = [Float]()
         if bStart {
             start()
         }
@@ -63,7 +63,7 @@ class AudioIn {
     }
     
     func update(_ data: UnsafeMutablePointer<Float>, _ len: UInt32) {
-        sampleBuffer.append(contentsOf: (0..<Int(len)).map { (i) -> Double in return Double(data[i]) })
+        sampleBuffer.append(contentsOf: (0..<Int(len)).map { (i) -> Float in return data[i] })
         while sampleBuffer.count >= samplePeriodNumPoints {
             let dst = Array(sampleBuffer[0 ..< samplePeriodNumPoints])
             for updater in updaters {

@@ -18,7 +18,8 @@ struct SingleToneView: View {
     let notes = Notes()
     @State var note = "A"
     @State var lastOctave = 0
-    let audioPlay = AudioPlay()
+    let audioPlay = AudioPlay(44100)
+    let singleToneProvider = SingleToneProvider()
 
     var body: some View {
         VStack {
@@ -46,7 +47,7 @@ struct SingleToneView: View {
                 },
                 set: { (newValue) in
                     self.frequency = newValue
-                    self.audioPlay.frequency = Float32(newValue)
+                    self.singleToneProvider.frequency = newValue
                 }), in: 100...10000)
             HStack {
                 Spacer()
@@ -91,7 +92,7 @@ Spacer()
             Button(action: {
                 self.soundOn.toggle()
                 if (self.soundOn) {
-                    self.audioPlay.frequency = Float(self.frequency)
+                    self.singleToneProvider.frequency = self.frequency
                     self.audioPlay.changeVolume(value: self.volume)
                     self.audioPlay.start()
                 } else {
@@ -112,7 +113,12 @@ Spacer()
     
     func changeFrequency() {
         frequency = notes.calcFrequency(note, octave)
-        audioPlay.frequency = Float(frequency)
+        singleToneProvider.frequency = frequency
+    }
+
+    init() {
+        singleToneProvider.sampleRate = 44100
+        audioPlay.setDataProvider(singleToneProvider)
     }
 }
 

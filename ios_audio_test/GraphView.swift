@@ -10,16 +10,16 @@ import UIKit
 
 class GraphView: UIView {
    
-    var values = [Double]()
-    var minValue: Double = 0.0
-    var maxValue: Double = 1.0
+    var values = [Float]()
+    var minValue: Float = 0.0
+    var maxValue: Float = 1.0
     var color = UIColor.white
     var lineWidth = 1
 
     private var dataWidth = CGFloat(0)
     private var dataHeight = CGFloat(0)
     
-    func calcPoint(idx: Int, value: Double) -> CGPoint {
+    func calcPoint(idx: Int, value: Float) -> CGPoint {
         let x = CGFloat(idx) * frame.width / dataWidth
         let y = frame.height - (CGFloat(value - minValue) * frame.height / dataHeight)
         return CGPoint(x:x, y:y)

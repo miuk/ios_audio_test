@@ -11,12 +11,11 @@ import Foundation
 class SpectrumProvider : DataProvider {
     
     var fft = FFT(512)
-    var count = 0
     
-    override func convert(_ src: [Double]) -> [Double] {
-        count += 1
-        let spec = fft.fft(src)
-        let dst = spec.map { (x) -> Double in return (x > 0) ? log10(x) * 20 : 0 }
+    override func convert(_ src: [Float]) -> [Float] {
+        
+        let spec = fft.fft((0 ..< src.count).map { (i) -> Double in Double(src[i])} )
+        let dst = spec.map { (x) -> Float in return (x > 0) ? Float(log10(x)) * 20 : 0 }
         return dst
     }
     

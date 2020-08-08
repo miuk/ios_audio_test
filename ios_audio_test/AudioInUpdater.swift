@@ -9,5 +9,5 @@
 import Foundation
 
 protocol AudioInUpdater {
-    func update(_ data: [Double])
+    func update(_ data: [Float])
 }

@@ -15,14 +15,18 @@ class AudioPlay {
     private var remoteIOUnit: AudioUnit?
     private var mixerUnit: AudioUnit?
 
-    private let sampleRate: Float = 44100.0 // サンプリングレート
-    var frequency: Float = 440.0 // 440Hz = ラの音
-    private var frame: Float = 0 // フレーム数
+    private var sampleRate = 44100
     private var bPlaying = false
+    private var dataProvider: AudioPlayDataProvider?
 
     /// 初期化
-    init () {
+    init (_ sampleRate: Int) {
+        self.sampleRate = sampleRate
         prepareAudioUnit()
+    }
+
+    func setDataProvider(_ value: AudioPlayDataProvider) {
+        dataProvider = value
     }
 
     /// Audio Unitを使用する準備をする
@@ -111,10 +115,8 @@ class AudioPlay {
         let capacity = Int(abl[0].mDataByteSize) / MemoryLayout<Float>.size
         // バッファに値を書き込む
         if let buffer: UnsafeMutablePointer<Float> = abl[0].mData?.bindMemory(to: Float.self, capacity: capacity) {
-            for i: Int in 0 ..< Int(inNumberFrames) {
-                // サイン波を生成
-                buffer[i] = sin(frame * frequency * 2.0 * Float(Double.pi) / sampleRate)
-                frame += 1
+            if let dp = dataProvider {
+                dp.getAudioPlayData(buffer, inNumberFrames)
             }
         }
 
@@ -140,7 +142,6 @@ class AudioPlay {
         if bPlaying {
             return
         }
-        frame = 0
         AUGraphStart(auGraph!)
         bPlaying = true
     }

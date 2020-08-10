@@ -10,7 +10,7 @@ import Foundation
 
 class SendRecv : AudioInUpdater, AudioPlayDataProvider {
 
-    var sock = -1
+    var udpsocket: UnsafeMutablePointer<context>?
     private var recvBuffer = [Float]()
     private let lock = NSLock()
 
@@ -55,20 +55,18 @@ class SendRecv : AudioInUpdater, AudioPlayDataProvider {
     }
     
     func start(_ peerHost: String, _ strPeerPort: String, _ strMyPort: String) -> String {
-        let ref: UnsafeMutableRawPointer = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
-        registerCallback(callback, ref)
         guard let peerPort = Int32(strPeerPort) else { return "wrong peer port" }
         guard let myPort = Int32(strMyPort) else { return "wrong my port" }
-        sock = Int(openUDPSocket(peerHost, peerPort, myPort))
-        if sock < 0 {
-            return "socket open failed"
-        }
+        guard let sock = openUDPSocket(peerHost, peerPort, myPort) else { return "socket open failed" }
+        udpsocket = sock
+        let ref: UnsafeMutableRawPointer = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
+        registerCallback(sock, callback, ref)
         return ""
     }
     
     func stop() {
-        closeUDPSocket(Int32(sock))
-        sock = -1
+        closeUDPSocket(udpsocket)
+        udpsocket = nil
     }
 
     func update(_ data: [Float]) {
@@ -83,7 +81,7 @@ class SendRecv : AudioInUpdater, AudioPlayDataProvider {
             }
         }
         let p = UnsafePointer<Int16>(s)
-        sendUDPDatagram(Int32(sock), p, Int32(s.count))
+        sendUDPDatagram(udpsocket, p, Int32(s.count))
     }
  
     func received(_ data: UnsafePointer<Int16>?, _ len: Int32) {

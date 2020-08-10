@@ -10,13 +10,26 @@
 #define udpsocket_h
 
 #include <stdio.h>
-
-int openUDPSocket(const char* remoteHost, int remotePort, int localPort);
-int sendUDPDatagram(int sock, const short* data, int len);
-void closeUDPSocket(int sock);
-int getLocalPort(int sock);
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <pthread.h>
 
 typedef void (*CALLBACK)(void* ref, const short*, int);
-void registerCallback(CALLBACK callback, void* ref);
+
+struct context {
+    CALLBACK callback;
+    void* ref;
+    pthread_t recvThread;
+    int sock;
+    struct sockaddr_storage remote;
+    socklen_t slen;
+    int bRunning;
+};
+
+struct context* openUDPSocket(const char* remoteHost, int remotePort, int localPort);
+int sendUDPDatagram(struct context* ctx, const short* data, int len);
+void closeUDPSocket(struct context* ctx);
+void registerCallback(struct context* ctx, CALLBACK callback, void* ref);
 
 #endif /* udpsocket_h */

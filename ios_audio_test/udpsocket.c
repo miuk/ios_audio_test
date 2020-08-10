@@ -8,34 +8,20 @@
 
 #include "udpsocket.h"
 
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
 #include <netdb.h>
 #include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
-#include <pthread.h>
 #include <poll.h>
-
-static CALLBACK s_callback = NULL;
-static void* s_ref = NULL;
-static pthread_t s_recvThread;
-static int s_sock = -1;
-
-void
-registerCallback(CALLBACK callback, void* ref)
-{
-    s_callback = callback;
-    s_ref = ref;
-}
 
 static void*
 recv_routine(void* arg)
 {
+    struct context* ctx = (struct context*)arg;
     printf("recv_routine start\n");
-    for (;;) {
+    while (ctx->bRunning) {
         struct pollfd ev;
-        ev.fd = s_sock;
+        ev.fd = ctx->sock;
         ev.events = POLLIN;
         int ret = poll(&ev, 1, 100);
         if (ret < 0) {
@@ -43,27 +29,27 @@ recv_routine(void* arg)
             break;
         }
         if (ret == 0) {
-            break;
+            continue;
         }
         struct sockaddr_storage ss;
         socklen_t slen = sizeof(ss);
         char buf[2048];
-        ret = (int)recvfrom(s_sock, buf, sizeof(buf), 0
+        ret = (int)recvfrom(ctx->sock, buf, sizeof(buf), 0
                             , (struct sockaddr*)&ss, &slen);
         if (ret < 0) {
             perror("recvfrom");
             break;
         }
         /*printf("recv %d\n", ret);*/
-        if (s_callback != NULL && ret > 0) {
-            s_callback(s_ref, (const short*)buf, ret / 2);
+        if (ctx->callback != NULL && ret > 0) {
+            ctx->callback(ctx->ref, (const short*)buf, ret / 2);
         }
     }
     printf("recv_routine finish\n");
     return NULL;
 }
 
-int
+struct context*
 openUDPSocket(const char* remoteHost, int remotePort, int localPort)
 {
     struct addrinfo* res = NULL;
@@ -77,20 +63,20 @@ openUDPSocket(const char* remoteHost, int remotePort, int localPort)
     int err = getaddrinfo(NULL, portstr, &hints, &res);
     if (err != 0) {
         printf("getaddrinfo failed: %s\n", gai_strerror(err));
-        return -1;
+        return NULL;
     }
     int sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (sock < 0) {
         perror("socket");
         freeaddrinfo(res);
-        return -1;
+        return NULL;
     }
     int opt = 1;
     setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
     if (bind(sock, res->ai_addr, res->ai_addrlen) < 0) {
         freeaddrinfo(res);
         close(sock);
-        return -1;
+        return NULL;
     }
     freeaddrinfo(res);
     sprintf(portstr, "%d", remotePort);
@@ -98,47 +84,43 @@ openUDPSocket(const char* remoteHost, int remotePort, int localPort)
     if (err != 0) {
         printf("getaddrinfo failed: %s\n", gai_strerror(err));
         close(sock);
-        return -1;
+        return NULL;
     }
-    if (connect(sock, res->ai_addr, res->ai_addrlen) < 0) {
-        perror("connect");
-        freeaddrinfo(res);
-        close(sock);
-        return -1;
-    }
+    struct context* ctx = (struct context*)malloc(sizeof(struct context));
+    memset(ctx, 0, sizeof(struct context));
+    memcpy(&ctx->remote, res->ai_addr, res->ai_addrlen);
+    ctx->slen = res->ai_addrlen;
+    freeaddrinfo(res);
+    ctx->sock = sock;
+    ctx->bRunning = 1;
+    pthread_create(&ctx->recvThread, NULL, recv_routine, ctx);
 
-    s_sock = sock;
-    pthread_create(&s_recvThread, NULL, recv_routine, NULL);
-
-    return sock;
+    return ctx;
 }
 
 int
-sendUDPDatagram(int sock, const short* data, int len)
+sendUDPDatagram(struct context* ctx, const short* data, int len)
 {
-    ssize_t ret = send(sock, data, sizeof(short) * len, 0);
+    ssize_t ret = sendto(ctx->sock, data, sizeof(short) * len, 0, (struct sockaddr*)&ctx->remote, ctx->slen);
     /*printf("send %d %zd\n", len, ret);*/
     return (int)ret;
 }
 
 void
-closeUDPSocket(int sock)
+closeUDPSocket(struct context* ctx)
 {
-    close(sock);
-    s_sock = -1;
+    if (ctx == NULL)
+        return;
+    ctx->bRunning = 0;
+    close(ctx->sock);
     void* arg = NULL;
-    pthread_join(s_recvThread, arg);
+    pthread_join(ctx->recvThread, &arg);
+    free(ctx);
 }
 
-int
-getLocalPort(int sock)
+void
+registerCallback(struct context* ctx, CALLBACK callback, void* ref)
 {
-    struct sockaddr_storage ss;
-    socklen_t slen = sizeof(ss);
-    if (getsockname(sock, (struct sockaddr*)&ss, &slen) != 0) {
-        perror("getsockname");
-        return -1;
-    }
-    struct sockaddr_in* sin = (struct sockaddr_in*)&ss;
-    return ntohs(sin->sin_port);
+    ctx->callback = callback;
+    ctx->ref = ref;
 }
